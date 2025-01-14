@@ -16,14 +16,15 @@ script = ExtResource("1_mi8ev")
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -144.0
-offset_right = 272.0
+offset_left = -240.0
+offset_right = 227.0
 offset_bottom = 78.0
 grow_horizontal = 2
 scale = Vector2(0.5, 0.5)
+theme_override_colors/font_color = Color(0.807843, 0.356863, 0, 1)
 theme_override_fonts/font = ExtResource("1_lvymh")
 theme_override_font_sizes/font_size = 64
-text = "0"
+text = "Time Score: 0"
 
 [node name="Message" type="Label" parent="."]
 anchors_preset = 8
@@ -70,11 +71,15 @@ one_shot = true
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -144.0
-offset_right = -8.0
-offset_bottom = 48.0
+offset_left = -214.0
+offset_top = 2.0
+offset_right = -101.0
+offset_bottom = 25.0
 grow_horizontal = 0
-text = "Counter: "
+scale = Vector2(1.8, 1.8)
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_lvymh")
+text = "Mob Score: 0"
 
 [connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="timeout" from="MessageTimer" to="." method="_on_message_timer_timeout"]

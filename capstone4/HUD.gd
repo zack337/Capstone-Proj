@@ -16,8 +16,8 @@ func show_game_over():
 	$StartButton.show()
 
 func update_score(time_score, kill_score):
-	$ScoreLabel.text = "Time Alive: %s" % str(time_score)
-	$Mob_counter.text = "Counter: %s" % str(kill_score)
+	$ScoreLabel.text = "Time Score: %s" % str(time_score)
+	$Mob_counter.text = "Mob Score: %s" % str(kill_score)
  
 func _on_start_button_pressed():
 	$StartButton.hide()
