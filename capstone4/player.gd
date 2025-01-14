@@ -50,3 +50,9 @@ func _process(delta):
 	elif velocity.y != 0:
 		$AnimatedSprite2D.animation = "up"
 		$AnimatedSprite2D.flip_v = velocity.y > 0
+
+
+func _on_canvas_layer_use_move_vector(move_vector):
+	_process(move_vector)
+	
+	
