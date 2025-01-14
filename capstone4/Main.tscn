@@ -1,0 +1,79 @@
+[gd_scene load_steps=10 format=3 uid="uid://8ld4f35d30g5"]
+
+[ext_resource type="Script" path="res://Main.gd" id="1_v6s3v"]
+[ext_resource type="PackedScene" uid="uid://culm70dh17su1" path="res://player.tscn" id="1_w273f"]
+[ext_resource type="PackedScene" uid="uid://dkb42s1bx71mj" path="res://Mob.tscn" id="2_idscy"]
+[ext_resource type="Texture2D" uid="uid://cf4tx3dx0ks0v" path="res://art/Galaxy_BG.png" id="3_janba"]
+[ext_resource type="PackedScene" uid="uid://bv0luiem8yqsw" path="res://snowball.tscn" id="4_8jm0j"]
+[ext_resource type="PackedScene" uid="uid://bne7av8msra68" path="res://HUD.tscn" id="4_rb1mb"]
+[ext_resource type="AudioStream" uid="uid://j728d2rvjv4d" path="res://art/gameover.wav" id="6_8bk00"]
+[ext_resource type="AudioStream" uid="uid://b1ligj8f5ktuj" path="res://art/speed-addiction-edm-breakbeat-281127.ogg" id="7_xxyu1"]
+
+[sub_resource type="Curve2D" id="Curve2D_4p3ay"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 480, 0, 0, 0, 0, 0, 480, 720, 0, 0, 0, 0, 0, 720, 0, 0, 0, 0, 0, 0)
+}
+point_count = 5
+
+[node name="Main" type="Node"]
+script = ExtResource("1_v6s3v")
+mob_scene = ExtResource("2_idscy")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(7.21961e-08, 0.259884, 0.259911, 1)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = -56.0
+offset_right = 584.0
+offset_bottom = 720.0
+texture = ExtResource("3_janba")
+
+[node name="Player" parent="." instance=ExtResource("1_w273f")]
+position = Vector2(240, 450)
+
+[node name="snowball" parent="." instance=ExtResource("4_8jm0j")]
+
+[node name="My_Name" type="Label" parent="."]
+offset_left = 340.0
+offset_top = 424.0
+offset_right = 399.0
+offset_bottom = 447.0
+text = "By Zack"
+
+[node name="MobTimer" type="Timer" parent="."]
+wait_time = 0.5
+
+[node name="ScoreTimer" type="Timer" parent="."]
+
+[node name="StartTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="StartPosition" type="Marker2D" parent="."]
+position = Vector2(240, 450)
+
+[node name="MobPath" type="Path2D" parent="."]
+curve = SubResource("Curve2D_4p3ay")
+metadata/_edit_group_ = true
+
+[node name="MobSpawnLocation" type="PathFollow2D" parent="MobPath"]
+
+[node name="HUD" parent="." instance=ExtResource("4_rb1mb")]
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_xxyu1")
+
+[node name="DeathSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_8bk00")
+
+[connection signal="hit" from="Player" to="." method="game_over"]
+[connection signal="hit_mob" from="snowball" to="." method="on_point_gained"]
+[connection signal="timeout" from="MobTimer" to="." method="_on_mob_timer_timeout"]
+[connection signal="timeout" from="ScoreTimer" to="." method="_on_score_timer_timeout"]
+[connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]
+[connection signal="start_game" from="HUD" to="." method="new_game"]

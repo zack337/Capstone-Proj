@@ -1,0 +1,55 @@
+[gd_scene load_steps=8 format=3 uid="uid://culm70dh17su1"]
+
+[ext_resource type="Script" path="res://player.gd" id="1_2gm7g"]
+[ext_resource type="Texture2D" uid="uid://b4y5w0xrhd71n" path="res://art/SpaceShip1.png" id="2_2sf8p"]
+[ext_resource type="Texture2D" uid="uid://dloi4k4scu42a" path="res://art/SpaceShip_L1.png" id="2_16ok8"]
+[ext_resource type="Texture2D" uid="uid://bm3u7db7u3hlo" path="res://art/SpaceShip2.png" id="3_mr7ja"]
+[ext_resource type="Texture2D" uid="uid://77suamhds508" path="res://art/SpaceShip_L3.png" id="3_ofqs7"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pw85a"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_16ok8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ofqs7")
+}],
+"loop": true,
+"name": &"Walk",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_2sf8p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_mr7ja")
+}],
+"loop": true,
+"name": &"up",
+"speed": 10.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_36n7h"]
+radius = 27.0
+height = 70.0
+
+[node name="Player" type="Area2D"]
+position = Vector2(83, 131)
+script = ExtResource("1_2gm7g")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0.574399, 1.54972e-06)
+scale = Vector2(0.966941, 1.1)
+sprite_frames = SubResource("SpriteFrames_pw85a")
+animation = &"up"
+frame_progress = 0.548135
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_36n7h")
+
+[node name="Marker2D" type="Marker2D" parent="."]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
