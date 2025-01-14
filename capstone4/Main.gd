@@ -2,8 +2,8 @@ extends Node
 
 @export var snowball: PackedScene
 @export var mob_scene: PackedScene
-var score
-var points = 0
+var time_score = 0
+var kill_score = 0
 
 const SNOWBALL = preload("res://snowball.tscn")
 
@@ -18,32 +18,32 @@ func game_over():
 	$Player.hide()
 	
 func new_game():
-	score = 0
+	time_score = 0
 	$Player.start($StartPosition.position)
 	$StartTimer.start()
-	$HUD.update_score(score)
+	$HUD.update_score(time_score, kill_score)
 	$HUD.show_message("Get Ready")
 	get_tree().call_group("mobs", "queue_free")
 	$Player.fire_snowball.connect(spawn_snowball)
 	$Player.show()
 	$Music.play()
 	$My_Name.hide()
-	points = 0
+	kill_score = 0
 
 func on_point_gained():
-	points += 1
-	print(points)
-	$HUD.update_points(points)
+	kill_score += 1
+	$HUD.update_score(time_score, kill_score)
 
 func spawn_snowball(position: Vector2, direction: Vector2):
 	var snowball = SNOWBALL.instantiate()
 	get_parent().add_child(snowball)
 	snowball.position = position
 	snowball.direction = direction
+	snowball.hit_mob.connect(on_point_gained)
 	
 func _on_score_timer_timeout():
-	score += 1
-	$HUD.update_score(score)
+	time_score += 1
+	$HUD.update_score(time_score, kill_score)
 
 func _on_start_timer_timeout():
 	$MobTimer.start()

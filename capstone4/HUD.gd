@@ -15,11 +15,9 @@ func show_game_over():
 	await  get_tree().create_timer(1.0).timeout
 	$StartButton.show()
 
-func update_score(score):
-	$ScoreLabel.text = str(score)
-
-func update_points(score):
-	$Mob_counter.text = "Counter: %s" % str(score)
+func update_score(time_score, kill_score):
+	$ScoreLabel.text = "Time Alive: %s" % str(time_score)
+	$Mob_counter.text = "Counter: %s" % str(kill_score)
  
 func _on_start_button_pressed():
 	$StartButton.hide()

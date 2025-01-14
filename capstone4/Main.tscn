@@ -72,6 +72,7 @@ stream = ExtResource("7_xxyu1")
 stream = ExtResource("6_8bk00")
 
 [connection signal="hit" from="Player" to="." method="game_over"]
+[connection signal="hit_mob" from="snowball" to="." method="on_point_gained"]
 [connection signal="timeout" from="MobTimer" to="." method="_on_mob_timer_timeout"]
 [connection signal="timeout" from="ScoreTimer" to="." method="_on_score_timer_timeout"]
 [connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]

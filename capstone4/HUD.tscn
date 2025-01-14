@@ -1,36 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://bne7av8msra68"]
 
 [ext_resource type="FontFile" uid="uid://c0vg6k8h0qiha" path="res://fonts/Xolonium-Regular.ttf" id="1_lvymh"]
-
-[sub_resource type="GDScript" id="GDScript_44s0v"]
-script/source = "extends CanvasLayer
-
-signal start_game
-
-func show_message(text):
-	$Message.text = text
-	$Message.show()
-	$MessageTimer.start()
-
-func show_game_over():
-	show_message(\"Game Over\")
-	await $MessageTimer.timeout
-	
-	$Message.text = \"Name\"
-	$Message.show()
-	await  get_tree().create_timer(1.0).timeout
-	$StartButton.show()
-
-func update_score(score):
-	$ScoreLabel.text = str(score)
-
-func _on_start_button_pressed():
-	$StartButton.hide()
-	start_game.emit()
-
-func _on_message_timer_timeout():
-	$Message.hide()
-"
+[ext_resource type="Script" path="res://HUD.gd" id="1_mi8ev"]
 
 [sub_resource type="InputEventAction" id="InputEventAction_fr3wl"]
 action = &"start_game"
@@ -39,16 +10,17 @@ action = &"start_game"
 events = [SubResource("InputEventAction_fr3wl")]
 
 [node name="HUD" type="CanvasLayer"]
-script = SubResource("GDScript_44s0v")
+script = ExtResource("1_mi8ev")
 
 [node name="ScoreLabel" type="Label" parent="."]
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -8.0
-offset_right = 40.0
-offset_bottom = 78.0
+offset_left = -144.0
+offset_right = 272.0
+offset_bottom = 304.0
 grow_horizontal = 2
+scale = Vector2(0.5, 0.5)
 theme_override_fonts/font = ExtResource("1_lvymh")
 theme_override_font_sizes/font_size = 64
 text = "0"
