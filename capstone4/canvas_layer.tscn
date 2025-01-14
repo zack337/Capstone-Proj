@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://ctk4udn63unxx"]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="."]
