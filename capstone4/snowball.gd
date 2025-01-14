@@ -1,5 +1,4 @@
 extends Area2D
-signal hit_mob
 
 var damage: float = 1
 var direction = Vector2()
@@ -9,11 +8,7 @@ func _physics_process(delta):
 	translate(direction * SPEED * delta)
 
 func _ready() -> void:
-	body_entered.connect(on_hit_mob)
 	body_entered.connect(on_body_entered)
-	
-func on_hit_mob(body: Node2D):
-	hit_mob.emit()
 
 func on_body_entered(body: Node2D):
 	print(body.name)

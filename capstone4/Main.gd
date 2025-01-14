@@ -5,7 +5,11 @@ extends Node
 var score
 var points = 0
 
+const SNOWBALL = preload("res://snowball.tscn")
+
 func game_over():
+	if $Player.fire_snowball.is_connected(spawn_snowball):
+		$Player.fire_snowball.disconnect(spawn_snowball)
 	$ScoreTimer.stop()
 	$MobTimer.stop()
 	$HUD.show_game_over()
@@ -20,6 +24,7 @@ func new_game():
 	$HUD.update_score(score)
 	$HUD.show_message("Get Ready")
 	get_tree().call_group("mobs", "queue_free")
+	$Player.fire_snowball.connect(spawn_snowball)
 	$Player.show()
 	$Music.play()
 	$My_Name.hide()
@@ -30,6 +35,12 @@ func on_point_gained():
 	print(points)
 	$HUD.update_points(points)
 
+func spawn_snowball(position: Vector2, direction: Vector2):
+	var snowball = SNOWBALL.instantiate()
+	get_parent().add_child(snowball)
+	snowball.position = position
+	snowball.direction = direction
+	
 func _on_score_timer_timeout():
 	score += 1
 	$HUD.update_score(score)

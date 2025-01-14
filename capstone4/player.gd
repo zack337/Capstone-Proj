@@ -1,11 +1,11 @@
 extends Area2D
 signal hit
-signal snowball_hitmob
+signal fire_snowball(position: Vector2, direction: Vector2)
 
 @export var speed = 400
 var screen_size
-const SNOWBALL = preload("res://snowball.tscn")
 var direction = Vector2()
+
 
 func _ready():
 	screen_size = get_viewport_rect().size
@@ -40,11 +40,7 @@ func _process(delta):
 		$AnimatedSprite2D.stop()
 
 	if Input.is_action_just_pressed("throw"):
-		var snowball = SNOWBALL.instantiate()
-		get_parent().add_child(snowball)
-		snowball.position = $Marker2D.position + position
-		snowball.direction = direction
-		#snowball.hit_mob.connect(update_score)
+		fire_snowball.emit($Marker2D.position + position, direction)
 
 	position += velocity * delta
 	position = position.clamp(Vector2.ZERO, screen_size)
