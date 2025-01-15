@@ -10,17 +10,19 @@ func _input(event):
 			move_vector = calculate_move_vector(event.position)
 			joystick_active = true
 			$InnerCircle.position = event.position
-			$InnerCircle.visible = true
-			
+			$InnerCircle.show()
+		else:
+			joystick_active = false
+
 	if event is InputEventScreenTouch:
 		if event.pressed == false:
-			joystick_active == false
-			$InnerCircle.visible = false
+			$InnerCircle.hide()
 
 func _physics_process(_delta):
 	if joystick_active:
 		emit_signal("use_move_vector", move_vector)
-
+	else:
+		emit_signal("use_move_vector", Vector2(0, 0))
 
 func calculate_move_vector(event_position):
 	var texture_center = $TouchScreenButton.position + Vector2(64, 64)
