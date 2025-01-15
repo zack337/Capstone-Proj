@@ -19,19 +19,12 @@ point_count = 5
 script = ExtResource("1_v6s3v")
 mob_scene = ExtResource("2_idscy")
 
-[node name="ColorRect" type="ColorRect" parent="."]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(7.21961e-08, 0.259884, 0.259911, 1)
-
 [node name="TextureRect" type="TextureRect" parent="."]
 offset_left = -56.0
 offset_right = 584.0
 offset_bottom = 720.0
 texture = ExtResource("3_janba")
+metadata/_edit_use_anchors_ = true
 
 [node name="Player" parent="." instance=ExtResource("1_w273f")]
 position = Vector2(240, 450)
@@ -44,6 +37,7 @@ offset_top = 424.0
 offset_right = 399.0
 offset_bottom = 447.0
 text = "By Zack"
+metadata/_edit_use_anchors_ = true
 
 [node name="MobTimer" type="Timer" parent="."]
 wait_time = 0.5

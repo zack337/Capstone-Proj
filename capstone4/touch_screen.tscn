@@ -11,19 +11,19 @@ radius = 57.9
 [node name="CanvasLayer" type="CanvasLayer"]
 script = ExtResource("1_8cixe")
 
-[node name="TouchScreenButton" type="TouchScreenButton" parent="."]
-position = Vector2(0, 592)
-scale = Vector2(1.12281, 1.12281)
-texture_normal = ExtResource("1_rpteq")
-shape = SubResource("CircleShape2D_jdwpp")
-
-[node name="InnerCircle" type="Sprite2D" parent="."]
-position = Vector2(64, 653)
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("3_gw37d")
-
 [node name="TouchScreenButton2" type="TouchScreenButton" parent="."]
-position = Vector2(344, 586)
+position = Vector2(344, 554)
 scale = Vector2(0.75, 0.75)
 texture_normal = ExtResource("4_nrcsl")
 action = "throw"
+
+[node name="InnerCircle" type="Sprite2D" parent="."]
+position = Vector2(64, 630)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("3_gw37d")
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="."]
+position = Vector2(0, 554)
+scale = Vector2(1.12281, 1.12281)
+texture_normal = ExtResource("1_rpteq")
+shape = SubResource("CircleShape2D_jdwpp")
