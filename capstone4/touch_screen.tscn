@@ -12,8 +12,8 @@ radius = 57.9
 script = ExtResource("1_8cixe")
 
 [node name="TouchScreenButton2" type="TouchScreenButton" parent="."]
-position = Vector2(344, 554)
-scale = Vector2(0.75, 0.75)
+position = Vector2(352, 559)
+scale = Vector2(0.71, 0.712)
 texture_normal = ExtResource("4_nrcsl")
 action = "throw"
 
@@ -22,7 +22,7 @@ position = Vector2(64, 630)
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("3_gw37d")
 
-[node name="TouchScreenButton" type="TouchScreenButton" parent="."]
+[node name="Big_circle" type="TouchScreenButton" parent="."]
 position = Vector2(0, 554)
 scale = Vector2(1.12281, 1.12281)
 texture_normal = ExtResource("1_rpteq")

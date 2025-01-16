@@ -64,6 +64,6 @@ animation = &"fly"
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-10, 0)
+position = Vector2(-11, 0)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_hj5br")
